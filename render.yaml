@@ -3,9 +3,8 @@ services:
     name: telegram-bot
     env: python
     plan: free
-    region: ohio  # Puedes cambiar la región si deseas
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    region: ohio  # Puedes cambiar la región si deseas    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 4
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
