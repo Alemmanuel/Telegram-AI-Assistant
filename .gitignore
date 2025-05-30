@@ -30,6 +30,17 @@ ENV/
 .env.*
 .env.production
 
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Database
 *.db
 *.sqlite3
