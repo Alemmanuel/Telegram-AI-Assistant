@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: telegram-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app -k uvicorn.workers.UvicornWorker -w 4 -b 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: WEBHOOK_URL
+        sync: false # Se configurará manualmente en el dashboard
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: SERPAPI_API_KEY
+        sync: false
+    autoDeploy: true
+
+databases:
+  - name: telegram-bot-db
+    databaseName: botdb
+    plan: free
