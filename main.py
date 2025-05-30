@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import requests
 import logging
-from database import init_db
 from agent import ask_agent
 from config import (
     TELEGRAM_BOT_TOKEN,
@@ -17,8 +16,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('bot.log'),
-        logging.StreamHandler()
+        logging.StreamHandler()  # Solo log en consola para simplificar
     ]
 )
 logger = logging.getLogger(__name__)
@@ -35,10 +33,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inicializar la base de datos
 @app.on_event("startup")
 async def startup_event():
-    init_db()
     # Configurar webhook de Telegram
     if WEBHOOK_URL:
         set_webhook()

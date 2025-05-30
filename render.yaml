@@ -19,8 +19,3 @@ services:
       - key: SERPAPI_API_KEY
         sync: false
     autoDeploy: true
-
-databases:
-  - name: telegram-bot-db
-    databaseName: botdb
-    plan: free
